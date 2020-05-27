@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CommentsCount = () => {
+const CommentsCount = ({count}) => {
 	return (
-		<h3>
-			Количество комментариев -
+		<h3 className="text-center">
+			Количество комментариев - {count}
 		</h3>
 	);
 };

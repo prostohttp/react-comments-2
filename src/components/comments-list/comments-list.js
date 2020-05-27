@@ -5,13 +5,18 @@ import {Button, Card} from "react-bootstrap";
 import {CommentsCount} from ".";
 import "./style.css";
 
-const CommentsList = ({data}) => {
+const CommentsList = ({data, setData}) => {
 
+	const deleteFromList = date => setData(data.filter(el => el.date !== date));
 
 	const commentsList = data.map(({name, date, text}) => (
 		<div className="container p-3" key={date}>
 			<Card>
-				<Button variant="danger" className="delete-button">
+				<Button
+					variant="danger"
+					className="delete-button"
+					onClick={() => deleteFromList(date)}
+				>
 					<FontAwesomeIcon icon={faTrash}/>
 				</Button>
 				<Card.Body>
@@ -22,12 +27,18 @@ const CommentsList = ({data}) => {
 			</Card>
 		</div>
 	))
-	return (
+	const renderCommentList = data.length ? (
 		<>
-			<CommentsCount/>
+			<CommentsCount count={data.length}/>
 			{commentsList}
 		</>
+	) : <h5 className="p-3 text-center">Ничего нет</h5>;
+	return (
+		<>
+			{renderCommentList}
+		</>
 	);
-};
+}
+
 
 export default CommentsList;
