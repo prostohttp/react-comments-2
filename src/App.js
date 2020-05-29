@@ -4,7 +4,7 @@ import {CommentsList} from "./components/comments-list";
 import FormComponent from "./components/form";
 
 function App() {
-	let [dataState, setDataState] = useState(JSON.parse(localStorage.getItem("comments")) || []);
+	const [dataState, setDataState] = useState(JSON.parse(localStorage.getItem("comments")) || []);
 	return (
 		<div className="App container p-3">
 			<CommentsList data={dataState} setData={setDataState}/>
